@@ -20,7 +20,7 @@ Develop a robust data foundation and visualization framework that supports:
 ## 🔎 Approach  
 
 ### 1. Data Exploration & Aggregation  
-- Queried **billions of user event logs** using advanced SQL (window functions, CTEs) to extract booking funnels and session behavior.  
+- Queried **thousands of user event logs** using advanced SQL (window functions, CTEs) to extract booking funnels and session behavior.  
 - Designed **aggregated fact tables** (DAU, partner-level conversion metrics, cohort retention tables), reducing query latency by ~60%.  
 - Built **data models** in a cloud warehouse (Snowflake / BigQuery) to support historical and predictive insights.  
 
