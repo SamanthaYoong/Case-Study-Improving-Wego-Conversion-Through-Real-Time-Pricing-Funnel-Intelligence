@@ -50,9 +50,7 @@ Develop a robust data foundation and visualization framework that supports:
 - **SQL** (DDL, CTEs, analytical functions) → dataset building & ad-hoc queries  
 - **Tableau / Looker** → dashboards & visualization  
 - **Cloud data warehouse** (Snowflake / BigQuery) → scalable data modeling  
-- **Stakeholder management** → requirements, roadmaps, cross-team collaboration  
-
-**Optional Add-ons**: Python (cohort/LTV analysis), Git (version control), Airflow (scheduling)  
+- **Stakeholder management** → requirements, roadmaps, cross-team collaboration
 
 ---
 
