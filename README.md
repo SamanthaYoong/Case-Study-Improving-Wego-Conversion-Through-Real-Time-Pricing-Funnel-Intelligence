@@ -1,63 +1,166 @@
-# Case Study: Turning Travel Data into Actionable Insights for Wego
-
-## 🔎 Context  
-Wego, as a leading travel metasearch platform, operates in a highly competitive market where user behavior, conversion funnels, and partner performance must be monitored and optimized in real-time.  
-
-With millions of flight and hotel searches daily, ensuring that data is **aggregated, accurate, and actionable** is essential for driving growth, improving product experience, and strengthening partner relationships.  
-
-**The challenge**: Design a framework that transformed raw user event and partner data into reliable analytical layers, enabling quick decision-making across product, marketing, and business teams.  
+#  Case Study: Improving Wego Conversion Through Real-Time Pricing & Funnel Intelligence  
+### *(Wego – Data Analyst Case Study Simulation)*
 
 ---
 
-## 🔎 Objective  
-Develop a robust data foundation and visualization framework that supports:  
-- Real-time tracking of user journeys (search → click → booking → conversion)  
-- Partner performance analysis (CTR, conversion rate, revenue per search)  
-- Exploratory data analysis to identify growth opportunities and product pain points  
+## 🗒️Overview
+
+This case study simulates a real-world project for **Wego**, a leading travel platform, focused on solving key business intelligence challenges in travel data:  
+- **Price volatility** and **data lag** from multiple providers  
+- **Conversion drop-offs** in the search-to-booking funnel  
+
+The project demonstrates how real-time data pipelines and actionable dashboards can help increase conversion and user trust across millions of daily travelers.
 
 ---
 
-## 🔎 Approach  
+## 📍 1. Context & Problem Statement
 
-### 1. Data Exploration & Aggregation  
-- Queried **thousands of user event logs** using advanced SQL (window functions, CTEs) to extract booking funnels and session behavior.  
-- Designed **aggregated fact tables** (DAU, partner-level conversion metrics, cohort retention tables), reducing query latency by ~60%.  
-- Built **data models** in a cloud warehouse (Snowflake) to support historical and predictive insights.  
+Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed two major challenges:
 
-### 2. Data Analysis & Insights  
-- **Funnel analysis**: Found 30% of users abandoned at the "redirect-to-partner" step due to slow load times → collaborated with product to optimize.  
-- **CAC vs. LTV segmentation**: Southeast Asia users showed higher repeat LTV → marketing reallocated 20% of budget toward retention campaigns.  
-- **Cohort analysis**: Measured promotional campaign impact (cashback, discounts), showing a **15% uplift in retention**.  
+1. **Price Volatility & Data Lag**  
+   Flight and hotel prices often changed faster than dashboards updated — causing mismatches between displayed and actual booking costs.
 
-### 3. Visualization & Communication  
-- Built **interactive Tableau dashboards** for:  
-  - Real-time user journey tracking (search → click → booking)  
-  - Partner performance benchmarking (CTR, RPC, conversion)  
-  - Regional growth monitoring (traffic sources, CAC, revenue share)  
-- Delivered insights via **dashboards, presentations, and ad-hoc reports** → ensuring stakeholder decisions were data-driven.  
+2. **Conversion Drop After Search**  
+   Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by 8% QoQ.  
+   Product managers suspected **pricing inconsistencies** and **irrelevant results** as main culprits.
 
 ---
 
-## 🔎 Results & Impact  
-- **Partner collaboration**: Shared performance insights improved CTR by **10%** and revenue-per-click by **8%**.  
-- **Decision-making speed**: Aggregated datasets cut reporting time from **hours to minutes**.  
-- **Marketing ROI uplift**: Budget reallocation drove **12% higher conversions** in targeted markets.  
-- **Product optimization**: Funnel insights reduced booking abandonment rate.  
+## ✅ 2. Business Goal
+
+Increase **conversion rate** and **user trust** by improving data freshness, accuracy, and funnel visibility through:
+
+- Real-time **price accuracy tracking**  
+- **Funnel performance visualization**  
+- **Partner (supplier) reliability scoring**
 
 ---
 
-## 🔎 Tools & Skills Used  
-- **SQL** (DDL, CTEs, analytical functions) → dataset building & ad-hoc queries  
-- **Tableau / Looker** → dashboards & visualization  
-- **Cloud data warehouse** (Snowflake / BigQuery) → scalable data modeling  
-- **Stakeholder management** → requirements, roadmaps, cross-team collaboration
+##  3. Data Sources & Architecture
+
+| Source | Type | Key Fields | Frequency |
+|--------|------|-------------|------------|
+| Flight API Logs | External | provider_id, route, price, timestamp | Real-time |
+| Booking Clickstream | Event Data | user_id, session_id, event_type, timestamp | Continuous |
+| Search Funnel Data | Internal DB | searches, clicks, redirects, bookings | Hourly |
+| Supplier Metadata | Static | provider_id, region, latency_score | Monthly |
+
+**Cloud:** BigQuery (GCP)  
+**BI Tools:** Looker Studio, Tableau Public  
+**ETL Simulation:** Airflow
 
 ---
 
-## 🔎 Why This Matters for Wego  
-By combining **robust data pipelines, exploratory analysis, and actionable dashboards**, this case study reflects the direct responsibilities of Wego’s Data Analyst role:  
-- Empowering product, marketing, and business teams with insights  
-- Maintaining scalable datasets that balance speed and depth  
-- Supporting Wego’s mission to make travel discovery and booking **seamless with data-driven decisions**  
+## 🔍 4. Analytical Approach
+
+### A. Data Exploration & Cleaning
+- Used **SQL (CTEs + Window Functions)** to unify logs and filter invalid price entries (>3 hours stale).  
+- Built aggregated tables in **BigQuery** for each flight route combining search, click, and booking data.  
+- Applied data deduplication to remove duplicate redirects from API retries.
+
+```sql
+WITH clean_data AS (
+  SELECT
+    route,
+    provider_id,
+    price,
+    event_type,
+    user_id,
+    timestamp,
+    ROW_NUMBER() OVER (PARTITION BY user_id, route ORDER BY timestamp DESC) AS rn
+  FROM raw_logs
+  WHERE price IS NOT NULL
+)
+SELECT * FROM clean_data WHERE rn = 1;
+```
+---
+### B. Funnel & Price Accuracy Analysis  
+### *(Wego – Data Analyst Case Study)*  
 
 ---
+
+## **B. Funnel & Price Accuracy Analysis**
+
+Constructed a funnel from **Search → Result → Redirect → Booking**  
+
+Introduced a new KPI:  
+Price Accuracy Rate = Accurate Prices / Total Searches
+
+
+Analyzed correlation between **price accuracy** and **conversion rate** per provider.  
+
+✅ **Finding:**  
+Providers with **<85% price accuracy** had **30% lower conversion** than average.
+
+---
+
+## **C. Visualization & Stakeholder Dashboards**
+
+Created two interactive dashboards in **Tableau**:
+
+### **1. Price Accuracy Monitor**
+- Real-time % of outdated prices by provider & route  
+- Alerts for latency spikes > 5 minutes  
+
+### **2. Funnel Conversion Insights**
+- Visualized flow: **Search → Click → Redirect → Booking**  
+- Segmentation by region, device type, and provider  
+
+These dashboards were designed for **Product** and **Business Ops** teams to quickly identify performance bottlenecks and data freshness issues.
+
+---
+
+## ✅ **5. Business Insights**
+
+| Insight | Impact | Recommendation |
+|----------|---------|----------------|
+| Price updates lagging 3–6 mins for 4 key providers | 15% lower CTR | Prioritize API caching refresh or exclude outdated listings |
+| Mobile app users dropped off at redirect step | −10% funnel completion | Optimize redirect UX and speed |
+| High seasonality spikes not reflected in forecasts | Inaccurate demand predictions | Integrate ARIMA/Prophet models for seasonal adjustment |
+
+---
+
+## ✅ **6. Outcome Simulation**
+
+After implementing **provider reliability scoring** and **dynamic dashboard refresh**:
+
+| Metric | Before | After | Improvement |
+|--------|--------|--------|-------------|
+| **Price Accuracy Rate** | 82% | 96% | +17% |
+| **Conversion Rate** | 3.8% | 5.2% | +37% |
+| **Data Latency (Avg)** | 6 mins | 1.5 mins | −75% |
+
+---
+
+##  **7. 📌 Tools & Skills Demonstrated**
+
+| Category | Tools / Skills |
+|-----------|----------------|
+| **Data Management** | SQL (CTEs, aggregation, DDL), BigQuery |
+| **Visualization** | Tableau, Looker Studio |
+| **Exploration** | Funnel & Cohort Analysis |
+| **Collaboration** | Requirements documentation with Product Managers |
+| **Pipeline Simulation** | Airflow scheduling concepts |
+| **Predictive Outlook** | ARIMA / Prophet for seasonality forecasting |
+
+---
+
+##  **8. Strategic Takeaway**
+
+This project illustrates how **data freshness** and **funnel transparency** directly influence **user trust and revenue** in travel platforms.  
+By maintaining **accurate real-time datasets** and delivering **data-driven dashboards**, analysts empower Wego to create the **seamless travel discovery experience** it promises — turning millions of searches into confident bookings.
+
+---
+
+##  **Keywords**
+`Travel Analytics` · `Funnel Optimization` · `Data Quality` · `Real-Time Dashboards` · `SQL` · `Tableau` · `BigQuery` · `User Behavior Analysis` · `Conversion Insights` · `Stakeholder Reporting`
+
+---
+
+## 🧩 **Author**
+**Samantha Yoong**  
+📍 Kuala Lumpur, Malaysia  
+🔗 [LinkedIn](https://www.linkedin.com/in/samantha-yoong-8551b4226/) | [Tableau Portfolio](https://public.tableau.com/app/profile/samantha.yoong/vizzes) | [GitHub Projects](https://samanthayoong.github.io/my-portfolio/)
+
+
+
