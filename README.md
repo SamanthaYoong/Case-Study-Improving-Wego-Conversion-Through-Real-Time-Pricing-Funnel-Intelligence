@@ -18,7 +18,7 @@ The project demonstrates how real-time data pipelines and actionable dashboards 
 Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed two major challenges:
 
 1. **Price Volatility & Data Lag**  
-   Flight and hotel prices often changed faster than dashboards updated — causing mismatches between displayed and actual booking costs.
+   Flight and hotel prices often changed faster than dashboards updated, causing mismatches between displayed and actual booking costs.
 
 2. **Conversion Drop After Search**  
    Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by 8% QoQ.  
