@@ -77,13 +77,10 @@ SELECT * FROM clean_data WHERE rn = 1;
 
 ### **B. Funnel & Price Accuracy Analysis**
 
-Constructed a funnel from **Search → Result → Redirect → Booking**  
-
-Introduced a new KPI:  
+- Constructed a funnel from **Search → Result → Redirect → Booking**  
+- Introduced a new KPI:  
 Price Accuracy Rate = Accurate Prices / Total Searches
-
-
-Analyzed correlation between **price accuracy** and **conversion rate** per provider.  
+- Analyzed correlation between **price accuracy** and **conversion rate** per provider.  
 
 ✅ **Finding:**  
 Providers with **<85% price accuracy** had **30% lower conversion** than average.
