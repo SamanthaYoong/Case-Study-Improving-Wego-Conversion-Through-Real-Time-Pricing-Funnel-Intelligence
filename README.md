@@ -1,5 +1,4 @@
 #  Case Study: Improving Wego Conversion Through Real-Time Pricing & Funnel Intelligence  
-### *(Wego – Data Analyst Case Study Simulation)*
 
 ---
 
