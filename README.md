@@ -73,13 +73,10 @@ WITH clean_data AS (
 )
 SELECT * FROM clean_data WHERE rn = 1;
 ```
----
-### B. Funnel & Price Accuracy Analysis  
-### *(Wego – Data Analyst Case Study)*  
 
 ---
 
-## **B. Funnel & Price Accuracy Analysis**
+### **B. Funnel & Price Accuracy Analysis**
 
 Constructed a funnel from **Search → Result → Redirect → Booking**  
 
