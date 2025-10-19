@@ -108,14 +108,20 @@ SELECT SUM(accurate_prices) / COUNT(search_ids)*100 AS price_accuracy_rate
 FROM price_deviation 
 ```
 - Analyzed correlation between **price accuracy** and **conversion rate** per provider.
-- Identified top 3 affected providers & API routes.
+- Conducted search relevance analysis (?conversion bias) through CTR, Engagement Rate, % Abandonment & Booking Rate.
   
 ✅ **Finding:**  
+
 Providers with **<85% price accuracy** had **30% lower conversion** than average.
+Search-to-click conversion dropped most in SEA and mobile app users.
+Relevance scores remained stable across most routes - confirming content mismatch not as the main driver of the drop.
 
 ---
+## **C. Searh Relevance & Conversion Quality**
 
-## **C. Visualization & Stakeholder Dashboards**
+
+
+## **D. Visualization & Stakeholder Dashboards**
 
 Created two interactive dashboards in **Tableau**:
 
