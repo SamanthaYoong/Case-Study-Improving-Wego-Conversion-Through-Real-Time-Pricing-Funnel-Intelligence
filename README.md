@@ -1,4 +1,4 @@
-#  Dignosing Conversion Rate Dropping Root Causes And Identify Improvement Through Real-Time Pricing & Funnel Intelligence 
+#  Dignosing Conversion Rate Dropping Root Causes & Help Identifying Improvements Through Real-Time Pricing & Funnel Intelligence 
 
 ---
 
