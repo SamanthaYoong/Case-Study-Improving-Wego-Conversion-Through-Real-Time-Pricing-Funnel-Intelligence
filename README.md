@@ -1,6 +1,6 @@
 #  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
 
-_Focus: Identifying conversion rate dropping root causes and help improving results through real-time data._
+_Focus: Identifying root causes to help with conversion rate dropping issues through real-time funnel data._
 
 ---
 
@@ -29,10 +29,9 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ## ✅ 2. Business Goal
 
-Diagnosing conversion dropping issues:
+To identify the root causes: 
 
-- Validate the hypothesis 
-- Uncover root causes
+- Validate the hypothesis _(pricing inconsistencies and irrelevant results cause conversions dropping)_
 - Quantify the business impact using **funnel**, **pricing**, and **system intelligence** 
 
 Increase **conversion rate** and **user trust** by improving data freshness, accuracy, and funnel visibility through:
