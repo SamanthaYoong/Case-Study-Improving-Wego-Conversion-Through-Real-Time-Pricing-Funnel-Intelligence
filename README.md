@@ -1,4 +1,4 @@
-#  Dignosing Root Causes to Help Improving WEGO Conversion Through Real-Time Pricing & Funnel Intelligence 
+#  Dignosing Conversion Rate Dropping Root Causes And Identify Improvement Through Real-Time Pricing & Funnel Intelligence 
 
 ---
 
@@ -27,17 +27,18 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ## ✅ 2. Business Goal
 
-Diagnosing business problems:
+Diagnosing conversion dropping issues:
 
-- Validate the hypothesis
+- Validate the hypothesis 
 - Uncover root causes
 - Quantify the business impact using **funnel**, **pricing**, and **system intelligence** 
 
 Increase **conversion rate** and **user trust** by improving data freshness, accuracy, and funnel visibility through:
 
 - Real-time **price accuracy tracking**  
-- **Funnel performance visualization**  
+- Cross-skateholders **Funnel performance visualization**  
 - **Partner (supplier) reliability scoring**
+- Integration of **Prophet-ARIMA forecasting model**
 
 ---
 
