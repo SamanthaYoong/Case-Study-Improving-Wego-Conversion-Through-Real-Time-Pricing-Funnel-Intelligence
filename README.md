@@ -27,6 +27,12 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ## ✅ 2. Business Goal
 
+Diagnosing business problems:
+
+- Validate the hypothesis
+- Uncover root causes
+- Quantify the business impact using **funnel**, **pricing**, and **system intelligence** 
+
 Increase **conversion rate** and **user trust** by improving data freshness, accuracy, and funnel visibility through:
 
 - Real-time **price accuracy tracking**  
