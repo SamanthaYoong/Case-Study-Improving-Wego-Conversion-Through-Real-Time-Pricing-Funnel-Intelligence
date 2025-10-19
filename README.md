@@ -1,4 +1,6 @@
-#  Dignosing Conversion Rate Dropping Root Causes & Help Identifying Improvements Through Real-Time Pricing & Funnel Intelligence 
+#  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
+
+_Focus: Identifying conversion rate dropping root causes and help improving conversions through real-time data._
 
 ---
 
