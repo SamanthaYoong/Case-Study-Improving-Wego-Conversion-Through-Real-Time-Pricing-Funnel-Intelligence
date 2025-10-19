@@ -1,6 +1,6 @@
 #  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
 
-_Focus: Identifying root causes to help with conversion rate dropping issues through real-time funnel data._
+_Focus: Identifying root causes to help with conversion rate dropping QoQ issues through real-time funnel data._
 
 ---
 
@@ -8,9 +8,9 @@ _Focus: Identifying root causes to help with conversion rate dropping issues thr
 
 This case study simulates a real-world project for **Wego**, a leading travel platform, focused on solving key business intelligence challenges in travel data:  
 - **Price volatility** and **data lag** from multiple providers  
-- **Conversion drop-offs** in the search-to-booking funnel  
+- **Conversion drop-offs** QoQ in the search-to-booking funnel  
 
-The project demonstrates how real-time data pipelines and actionable dashboards can help diagnosing root causes and increase conversion and user trust across millions of daily travelers.
+The project demonstrates how real-time data pipelines and actionable dashboards can help diagnosing root causes and improving conversion over time.
 
 ---
 
@@ -21,8 +21,8 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 1. **Price Volatility & Data Lag**  
    Flight and hotel prices often changed faster than dashboards updated, causing mismatches between displayed and actual booking costs.
 
-2. **Conversion Drop After Search**  
-   Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by 8% QoQ.  
+2. **Conversion Drop QoQ After Search**  
+   Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by ~8% QoQ.  
    Product managers suspected **pricing inconsistencies** and **irrelevant results** as main culprits.
 
 ---
@@ -31,15 +31,14 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 To identify the root causes: 
 
-- Validate the hypothesis _(pricing inconsistencies and irrelevant results cause conversions dropping)_
+- Validate the hypothesis _(pricing inconsistencies and irrelevant results)_
 - Quantify the business impact using **funnel**, **pricing**, and **system intelligence** 
 
-Increase **conversion rate** and **user trust** by improving data freshness, accuracy, and funnel visibility through:
+To increase **conversion rate** by improving data freshness, funnel visiblity,and user trust through:
 
 - Real-time **price accuracy tracking**  
-- Cross-skateholders **Funnel performance visualization**  
-- **Partner (supplier) reliability scoring**
-- Integration of **Prophet-ARIMA forecasting model**
+- Quick **Funnel performance visualization** _(cross skateholders)_
+- **Partner reliability scoring**
 
 ---
 
@@ -108,18 +107,16 @@ SELECT SUM(accurate_prices) / COUNT(search_ids)*100 AS price_accuracy_rate
 FROM price_deviation 
 ```
 - Analyzed correlation between **price accuracy** and **conversion rate** per provider.
-- Conducted search relevance analysis (?conversion bias) through CTR, Engagement Rate, % Abandonment & Booking Rate.
+- Conducted search relevance analysis across quarters through CTR, Engagement Rate, % Abandonment & Booking Rate.
   
 ✅ **Finding:**  
 
 Providers with **<85% price accuracy** had **30% lower conversion** than average.
-Search-to-click conversion dropped most in SEA and mobile app users.
-Relevance scores remained stable across most routes - confirming content mismatch not as the main driver of the drop.
+Search-to-click conversion dropped most in **SEA** and **mobile app users**.
+Relevance scores remained stable across most routes - confirming **content mismatch** not as the main driver of the drop.
+Unpredicted **high demand spike** happening on Q3.
 
 ---
-## **C. Searh Relevance & Conversion Quality**
-
-
 
 ## **D. Visualization & Stakeholder Dashboards**
 
@@ -135,9 +132,10 @@ Created two interactive dashboards in **Tableau**:
 
 These dashboards were designed for **Product** and **Business Ops** teams to quickly identify performance bottlenecks and data freshness issues.
 
+## **E. Implementation of ARIMA-Prophet Forecasting Model**
 ---
 
-## ✅ **5. Business Insights**
+## ✅ **5.Insights Summary**
 
 | Insight | Impact | Recommendation |
 |----------|---------|----------------|
