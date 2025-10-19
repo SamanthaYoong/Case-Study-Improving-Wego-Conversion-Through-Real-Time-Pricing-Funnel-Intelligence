@@ -61,24 +61,26 @@ Increase **conversion rate** and **user trust** by improving data freshness, acc
 ## 🔍 4. Analytical Approach
 
 ### A. Data Exploration & Cleaning
-- Used **SQL (CTEs + Window Functions)** to unify logs and filter invalid price entries (>3 hours stale).  
-- Built aggregated tables in **BigQuery** for each flight route combining search, click, and booking data.  
+- Used **SQL (CTEs + Window Functions)** to unify logs and filter invalid price entries (>3 hours stale).
 - Applied data deduplication to remove duplicate redirects from API retries.
+- Built aggregated tables(flight_api_log, fx_conversion_table etc) in **BigQuery** for each flight route combining search, click, and booking data.
+- Query the latest flight api log from each provider.
 - Example:
 ```sql
-WITH clean_unified_log AS (
+WITH flight_api_log AS (
   SELECT
-    route,
+    ROW_NUMBER() OVER (PARTITION BY provider_id, route ORDER BY timestamp DESC) AS number
     provider_id,
-    price,
-    event_type,
-    user_id,
+    route,
+    fare,
+    currency,
     timestamp,
-    ROW_NUMBER() OVER (PARTITION BY user_id, route ORDER BY timestamp DESC) AS rn
+    response_status,
+    latency_ms,
   FROM raw_logs
-  WHERE price IS NOT NULL
+  WHERE fare IS NOT NULL
 )
-SELECT * FROM clean_data WHERE rn = 1;
+SELECT * FROM flight_api_log WHERE rn = 1;
 ```
 
 ---
@@ -88,6 +90,18 @@ SELECT * FROM clean_data WHERE rn = 1;
 - Constructed a funnel from **Search → Result → Redirect → Booking**  
 - Introduced a new KPI:  
 Price Accuracy Rate = Accurate Prices / Total Searches
+```sql
+WITH price_deviation AS (
+SELECT m.,
+CASE WHEN f.fare = m.avg_market_price THEN 1 ELSE 0 AS accurate
+FROM flight_api_logs f
+JOIN market_benchmark_data m
+ON f.route = m.route
+)
+SELECT SUM(a.accurate_prices) / SUM(sc.search_id)
+FROM accurate_prices a
+JOIN search_click_logs sc
+ON 
 - Analyzed correlation between **price accuracy** and **conversion rate** per provider.  
 
 ✅ **Finding:**  
