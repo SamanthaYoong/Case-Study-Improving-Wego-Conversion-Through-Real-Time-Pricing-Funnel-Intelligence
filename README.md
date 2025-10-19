@@ -1,6 +1,4 @@
-#  Case Study: Diagnosing Conversion Drops After Search Stage in Travel Pricing Platform
-
-*<small>Goal: Investigate whether price inconsistencies and system reliability affected user conversion behavior.</small>*
+#  Case Study:  Improving WEGO Conversion Through Real-Time Pricing & Funnel Intelligence
 
 ---
 
