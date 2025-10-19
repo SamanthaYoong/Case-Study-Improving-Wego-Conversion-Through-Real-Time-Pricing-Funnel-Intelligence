@@ -1,6 +1,6 @@
 #  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
 
-_Focus: Identifying conversion rate dropping root causes and help improving conversions through real-time data._
+_Focus: Identifying conversion rate dropping root causes and help improving results through real-time data._
 
 ---
 
