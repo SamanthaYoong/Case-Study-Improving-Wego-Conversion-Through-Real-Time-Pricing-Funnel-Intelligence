@@ -85,25 +85,31 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 
 ---
 
-### **B. Funnel & Price Accuracy Analysis**
+### **B. Funnel Overview & Price Accuracy Analysis**
 
-- Constructed a funnel from **Search → Result → Redirect → Booking**  
+- Constructed a funnel from **Search → Result → Redirect → Booking**
+- Segmented users into region, device type and provider.
 - Introduced a new KPI:  
 Price Accuracy Rate = Accurate Prices / Total Searches
 ```sql
 WITH price_deviation AS (
-SELECT m.,
-CASE WHEN f.fare = m.avg_market_price THEN 1 ELSE 0 AS accurate
+SELECT
+sc.search_id AS search_ids,
+m.avg_market_price AS market_price,
+f.fare AS API_price,
+CASE WHEN f.fare = m.avg_market_price THEN 1 ELSE 0 AS accurate_prices
 FROM flight_api_logs f
 JOIN market_benchmark_data m
 ON f.route = m.route
-)
-SELECT SUM(a.accurate_prices) / SUM(sc.search_id)
-FROM accurate_prices a
 JOIN search_click_logs sc
-ON 
-- Analyzed correlation between **price accuracy** and **conversion rate** per provider.  
-
+ON sc.route = f.route
+)
+SELECT SUM(accurate_prices) / COUNT(search_ids)*100 AS price_accuracy_rate
+FROM price_deviation 
+```
+- Analyzed correlation between **price accuracy** and **conversion rate** per provider.
+- Identified top 3 affected providers & API routes.
+  
 ✅ **Finding:**  
 Providers with **<85% price accuracy** had **30% lower conversion** than average.
 
