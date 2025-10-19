@@ -64,9 +64,9 @@ Increase **conversion rate** and **user trust** by improving data freshness, acc
 - Used **SQL (CTEs + Window Functions)** to unify logs and filter invalid price entries (>3 hours stale).  
 - Built aggregated tables in **BigQuery** for each flight route combining search, click, and booking data.  
 - Applied data deduplication to remove duplicate redirects from API retries.
-
+- Example:
 ```sql
-WITH clean_data AS (
+WITH clean_unified_log AS (
   SELECT
     route,
     provider_id,
