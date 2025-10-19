@@ -1,4 +1,4 @@
-#  Case Study:  Dignosing Rootcause to Improve WEGO Conversion Through Real-Time Pricing & Funnel Intelligence
+#  Dignosing Root Causes to Help Improving WEGO Conversion Through Real-Time Pricing & Funnel Intelligence 
 
 ---
 
