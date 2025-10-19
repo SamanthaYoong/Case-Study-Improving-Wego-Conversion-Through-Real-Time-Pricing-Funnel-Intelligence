@@ -1,4 +1,4 @@
-#  Case Study:  Improving WEGO Conversion Through Real-Time Pricing & Funnel Intelligence
+#  Case Study:  Dignosing Rootcause to Improve WEGO Conversion Through Real-Time Pricing & Funnel Intelligence
 
 ---
 
