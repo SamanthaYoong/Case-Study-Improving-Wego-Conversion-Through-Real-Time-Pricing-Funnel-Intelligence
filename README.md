@@ -84,49 +84,77 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 
 ---
 
-### **B. Funnel Overview & Price Accuracy Analysis**
+### **B. Main Funnel Overview**
 
-- Constructed a funnel from **Search → Result → Redirect → Booking**
-- Segmented users into region, device type and provider.
-- Introduced a new KPI:  
-Price Accuracy Rate = Accurate Prices / Total Searches
-```sql
-WITH price_deviation AS (
-SELECT
-sc.search_id AS search_ids,
-m.avg_market_price AS market_price,
-f.fare AS API_price,
-CASE WHEN f.fare = m.avg_market_price THEN 1 ELSE 0 AS accurate_prices
-FROM flight_api_logs f
-JOIN market_benchmark_data m
-ON f.route = m.route
-JOIN search_click_logs sc
-ON sc.route = f.route
-)
-SELECT SUM(accurate_prices) / COUNT(search_ids)*100 AS price_accuracy_rate
-FROM price_deviation 
-```
-- Analyzed correlation between **price accuracy** and **conversion rate** per provider.
-- Conducted search relevance analysis across quarters through CTR, Engagement Rate, % Abandonment & Booking Rate.
+**Purpose:** Quantify *where* conversion drop occurs and who it affects most.
+
+- Constructed user funnel: **Search → Click → Detail → Booking**
+- Segmented by **region**, **device type**, and **provider**
+- Measured conversion per stage and trend over time
+
+**🧩 Finding:**  
+CTR declined **15%** across SEA, mainly among **mobile users**, indicating trust or relevance issues post-search. Unpredicted **high demand spike** happening on Q3.
+
+### **C. Price Accuracy & Volatility Monitor**
+
+**Purpose:** Validate if price inconsistencies directly correlate with conversion drop.
+
+| Metric | Formula | Description |
+|--------|----------|-------------|
+| **FX Drift %** | `(price_api - price_fx_normalized) / price_fx_normalized * 100` | Currency normalization deviation |
+| **Volatility Index** | `STDDEV(price)/AVG(price)*100` | Price fluctuation severity |
+| **Stale Price Rate** | `SUM(flag_stale)/COUNT(*)*100` | % of outdated flight results |
+| **Price–Click Correlation** | `CORR(price_dev_pct, CTR)` | Sensitivity of CTR to price deviation |
+
+**Visualization Ideas:**
+- Heatmap of **FX Drift % by Provider & Region**
+- Scatter plot of **Volatility vs Conversion Rate**
+- Tooltip overlay showing CTR trend and price deviation
+
+**🧩 Finding:**  
+Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk.
+
+### **D. Search Relevance & Conversion Quality***
+**Purpose:** Rule out irrelevant search results as alternative cause.
+
+| Metric | Formula | Description |
+|--------|----------|-------------|
+| **Relevance Score (RS)** | `(clicked results) / total results shown * normalized CTR` | How relevant results are to user query? |
+| **Volatility Index** | `STDDEV(price)/AVG(price)*100` | Price fluctuation severity |
+| **Stale Price Rate** | `SUM(flag_stale)/COUNT(*)*100` | % of outdated flight results |
+| **Price–Click Correlation** | `CORR(price_dev_pct, CTR)` | Sensitivity of CTR to price deviation |
   
 ✅ **Finding:**  
 
-Providers with **<85% price accuracy** had **30% lower conversion** than average.
-Search-to-click conversion dropped most in **SEA** and **mobile app users**.
-Relevance scores remained stable across most routes - confirming **content mismatch** not as the main driver of the drop.
-Unpredicted **high demand spike** happening on Q3.
+---
+
+### **C. Root Cause Deep Dive**
+
+- Connected **business KPIs** with **system metrics** for root-cause attribution.
+- Evaluated whether **system/cache issues**, **API latency** & **provider reliability** contributed to **stale pricing**.
+- Metrics used in Multi-axis correlation plot: FX Drift %, Latency, CTR.
+
+| Layer | Insight |
+|--------|----------|
+| **FX System/Cache** | FX Drift spiked **8–10%** in Thailand due to outdated currency cache.|
+| **API Latency** | Data refresh delayed **6–8 mins**, stale price rate rose **22%**.|
+| **Provider Behavior** | Three SEA providers showed p95 latency >5s and error rates >8%, aligning with the FX drift spike timeline and CTR drop. |
+
+
+**🧩 Summary of Inights:**  
+- System-level **FX cache staleness** , **latency bottlenecks** & provider reliability amplified price discrepancies, eroding user trust and click-through intent.
 
 ---
 
 ## **D. Visualization & Stakeholder Dashboards**
 
-Created two interactive dashboards in **Tableau**:
+### **1. Funnel Overview**
 
-### **1. Price Accuracy Monitor**
+## **1. Price Accuracy Monitor**
 - Real-time % of outdated prices by provider & route  
 - Alerts for latency spikes > 5 minutes  
 
-### **2. Funnel Conversion Insights**
+## **2. Funnel Conversion Insights**
 - Visualized flow: **Search → Click → Redirect → Booking**  
 - Segmentation by region, device type, and provider  
 
