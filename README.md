@@ -27,12 +27,13 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ---
 
-## ✅ 2. Business Goal
+## ✅ 2. Objective
 
-To identify the root causes: 
+Identify whether the conversion drop after the *search stage* was primarily caused by:
 
-- Validate the hypothesis _(pricing inconsistencies and irrelevant results)_
-- Quantify the business impact using **funnel**, **pricing**, and **system intelligence** 
+- Inaccurate or delayed pricing data  
+- Poor search relevance or mismatched results  
+- Provider reliability and system latency issues 
 
 To increase **conversion rate** by improving data freshness, funnel visiblity,and user trust through:
 
@@ -89,15 +90,15 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 **Purpose:** Quantify *where* conversion drop occurs and who it affects most.
 
 - Constructed user funnel: **Search → Click → Detail → Booking**
-- Segmented by **region**, **device type**, and **provider**
+- Segmented by **region**, **route**, and **provider**
 - Measured conversion per stage and trend over time
 
 **🧩 Finding:**  
-CTR declined **15%** across SEA, mainly among **mobile users**, indicating trust or relevance issues post-search. Unpredicted **high demand spike** happening on Q3.
+CTR declined **15%** across SEA, indicating trust or relevance issues post-search. Unpredicted **high demand spike** happening on Q3.
 
 ### **C. Price Accuracy & Volatility Monitor**
 
-**Purpose:** Validate if price inconsistencies directly correlate with conversion drop.
+**Purpose:** Validate if price inconsistencies directly correlate with conversion drop among SEA users.
 
 | Metric | Formula | Description |
 |--------|----------|-------------|
@@ -112,55 +113,49 @@ CTR declined **15%** across SEA, mainly among **mobile users**, indicating trust
 - Tooltip overlay showing CTR trend and price deviation
 
 **🧩 Finding:**  
-Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk.
+Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk among SEA users.
 
 ### **D. Search Relevance & Conversion Quality***
 **Purpose:** Rule out irrelevant search results as alternative cause.
 
-| Metric | Formula | Description |
-|--------|----------|-------------|
-| **Relevance Score (RS)** | `(clicked results) / total results shown * normalized CTR` | How relevant results are to user query? |
-| **Volatility Index** | `STDDEV(price)/AVG(price)*100` | Price fluctuation severity |
-| **Stale Price Rate** | `SUM(flag_stale)/COUNT(*)*100` | % of outdated flight results |
-| **Price–Click Correlation** | `CORR(price_dev_pct, CTR)` | Sensitivity of CTR to price deviation |
-  
-✅ **Finding:**  
+| Metric | Formula |  
+|--------|----------|
+| **Relevance Score (RS)** | `clicked results / total results shown * normalized CTR` | 
+| **Click Relevance Index (CRI)** | `average rank of clicked results/total results` | 
+| **Conversion Relevance Rate(CRR)** | `conversions from top 5 results/total conversions` | 
+| **Relevance Weighted Conversion Rate (RWCR)** | `∑(conversion Rate x relevance score)` | 
+| **Bounce Rate** | `searches with no click/total searches` | 
 
----
 
-### **C. Root Cause Deep Dive**
+**Visualization Ideas:**
+- Conversion tree (**Search → Click → Detail → Booking**)  
+- Region & route filters  
+- Tooltip with price deviation and provider reliability
 
-- Connected **business KPIs** with **system metrics** for root-cause attribution.
-- Evaluated whether **system/cache issues**, **API latency** & **provider reliability** contributed to **stale pricing**.
-- Metrics used in Multi-axis correlation plot: FX Drift %, Latency, CTR.
+**🧩 Finding:**  
+Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
+
+## **D. Root Cause Deep Dive I: Pricing Inconsistencies (FX Drift & Latency)**
 
 | Layer | Insight |
 |--------|----------|
-| **FX System/Cache** | FX Drift spiked **8–10%** in Thailand due to outdated currency cache.|
-| **API Latency** | Data refresh delayed **6–8 mins**, stale price rate rose **22%**.|
-| **Provider Behavior** | Three SEA providers showed p95 latency >5s and error rates >8%, aligning with the FX drift spike timeline and CTR drop. |
+| **FX System** | FX Drift spiked **8–10%** in Thailand due to outdated currency cache. |
+| **Cache / Latency** | Data refresh delayed **6–8 mins**, stale price rate rose **22%**. |
+
+**?Visualization Ideas:**
+
+## **E. Root Cause Deep Dive II: Provider Reliability & System Health**
+
+| Layer | Insight |
+|--------|----------|
+|?**Provider Behavior** | Provider A’s reliability score dropped **0.94 → 0.82**, aligning with **17% CTR decline**. |
 
 
-**🧩 Summary of Inights:**  
-- System-level **FX cache staleness** , **latency bottlenecks** & provider reliability amplified price discrepancies, eroding user trust and click-through intent.
+**🧩 Finding:**  
+?System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
 
 ---
 
-## **D. Visualization & Stakeholder Dashboards**
-
-### **1. Funnel Overview**
-
-## **1. Price Accuracy Monitor**
-- Real-time % of outdated prices by provider & route  
-- Alerts for latency spikes > 5 minutes  
-
-## **2. Funnel Conversion Insights**
-- Visualized flow: **Search → Click → Redirect → Booking**  
-- Segmentation by region, device type, and provider  
-
-These dashboards were designed for **Product** and **Business Ops** teams to quickly identify performance bottlenecks and data freshness issues.
-
-## ?**E.Airflow Scheduling Concept 
 ## ?**F.Implementation of ARIMA-Prophet Forecasting Model**
 ---
 
@@ -169,12 +164,12 @@ These dashboards were designed for **Product** and **Business Ops** teams to qui
 | Insight | Impact | Recommendation |
 |----------|---------|----------------|
 | Price updates lagging 3–6 mins for 4 key providers | 15% lower CTR | Prioritize API caching refresh or exclude outdated listings |
-| Mobile app users dropped off at redirect step | −10% funnel completion | Optimize redirect UX and speed |
+?Provider| Mobile app users dropped off at redirect step | −10% funnel completion | Optimize redirect UX and speed |
 | High seasonality spikes not reflected in forecasts | Inaccurate demand predictions | Integrate ARIMA/Prophet models for seasonal adjustment |
 
 ---
 
-## ✅ **6. Outcome Simulation**
+?## ✅ **6. Outcome Simulation**
 
 After implementing **provider reliability scoring** and **dynamic dashboard refresh**:
 
