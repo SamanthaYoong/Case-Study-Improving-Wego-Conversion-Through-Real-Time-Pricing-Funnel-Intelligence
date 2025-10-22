@@ -1,6 +1,6 @@
 #  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
 
-_Focus: Identifying root causes to help with conversion rate dropping QoQ issues through real-time funnel data._
+_Focus: Identifying root causes & to help with conversion rate dropping QoQ issues through real-time funnel data._
 
 ---
 
@@ -32,13 +32,12 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 Identify whether the conversion drop after the *search stage* was primarily caused by:
 
 - Inaccurate or delayed pricing data  
-- Poor search relevance or mismatched results  
-- Provider reliability and system latency issues 
+- Poor search relevance or mismatched results
 
 To increase **conversion rate** by improving data freshness, funnel visiblity,and user trust through:
 
 - Real-time **price accuracy tracking**  
-- Quick **Funnel performance visualization** _(cross skateholders)_
+- **Funnel performance visualization**
 - **Partner reliability scoring**
 
 ---
@@ -54,7 +53,7 @@ To increase **conversion rate** by improving data freshness, funnel visiblity,an
 
 **Cloud:** BigQuery (GCP)  
 **BI Tools:** Looker Studio, Tableau Public  
-**ETL Simulation:** Airflow
+**ETL Simulation:** Airflow (Simulated)
 
 ---
 
@@ -115,6 +114,27 @@ CTR declined **15%** across SEA, indicating trust or relevance issues post-searc
 **🧩 Finding:**  
 Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk among SEA users.
 
+## **Pricing Inconsistencies Root Cause Deep Dive**
+
+**Purpose:** Connect **business KPIs** with **system metrics** for root-cause attribution.
+
+**Layers of Analysis:**
+
+| Layer                 | Insight                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| **FX System**         | FX Drift spiked 8–10% in Thailand due to outdated currency cache.                       |
+| **Cache / Latency**   | Data refresh delayed by 6–8 minutes; stale price rate rose 22%.                         |
+| **Provider Behavior** | Provider A’s reliability score dropped from 0.94 → 0.82, aligning with 17% CTR decline. |
+
+**Visualization:**
+
+* Multi-axis correlation plot (FX Drift %, Cache/Latency, CTR)
+* Drill-down: Provider → Route → Currency
+* Event annotations for cache and latency spikes
+
+🧩 **Finding:**
+System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
+
 ### **D. Search Relevance & Conversion Quality***
 **Purpose:** Rule out irrelevant search results as alternative cause.
 
@@ -135,28 +155,30 @@ Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, 
 **🧩 Finding:**  
 Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
 
-## **D. Root Cause Deep Dive I: Pricing Inconsistencies (FX Drift & Latency)**
+### **E. Root Cause Deep Dive**
 
-| Layer | Insight |
-|--------|----------|
-| **FX System** | FX Drift spiked **8–10%** in Thailand due to outdated currency cache. |
-| **Cache / Latency** | Data refresh delayed **6–8 mins**, stale price rate rose **22%**. |
+**Purpose:** Connect **business KPIs** with **system metrics** for root-cause attribution.
 
-**?Visualization Ideas:**
+**Layers of Analysis:**
 
-## **E. Root Cause Deep Dive II: Provider Reliability & System Health**
+| Layer                 | Insight                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| **FX System**         | FX Drift spiked 8–10% in Thailand due to outdated currency cache.                       |
+| **Cache / Latency**   | Data refresh delayed by 6–8 minutes; stale price rate rose 22%.                         |
+| **Provider Behavior** | Provider A’s reliability score dropped from 0.94 → 0.82, aligning with 17% CTR decline. |
 
-| Layer | Insight |
-|--------|----------|
-|?**Provider Behavior** | Provider A’s reliability score dropped **0.94 → 0.82**, aligning with **17% CTR decline**. |
+**Visualization:**
 
+* Multi-axis correlation plot (FX Drift %, Cache/Latency, CTR)
+* Drill-down: Provider → Route → Currency
+* Event annotations for cache and latency spikes
 
-**🧩 Finding:**  
-?System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
+🧩 **Finding:**
+System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
 
 ---
 
-## ?**F.Implementation of ARIMA-Prophet Forecasting Model**
+## F.Implementation of ARIMA-Prophet Forecasting Model**
 ---
 
 ## ✅ **5.Insights Summary**
