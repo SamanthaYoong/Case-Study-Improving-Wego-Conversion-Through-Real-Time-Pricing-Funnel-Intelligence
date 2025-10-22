@@ -182,6 +182,8 @@ Forecasting Sketch (Concept):
 ⭐ Stakeholder Value:
 Ops can visually spot “forecast breaks” (actual > upper bound), triggering investigation into latency or API mismatch events before conversion loss occurs.
 
+---
+
 ### **2. Funnel Conversion & Forecast Insights**
 
 **Purpose**: Forecast short-term conversion recovery and identify volatility-driven drops.
