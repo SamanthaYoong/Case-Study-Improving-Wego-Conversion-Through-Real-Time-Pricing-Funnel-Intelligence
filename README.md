@@ -114,7 +114,7 @@ CTR declined **15%** across SEA, indicating trust or relevance issues post-searc
 **🧩 Finding:**  
 Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk among SEA users.
 
-## **Pricing Inconsistencies Root Cause Deep Dive**
+### **i. Pricing Inconsistencies Root Cause Deep Dive**
 
 **Purpose:** Connect **business KPIs** with **system metrics** for root-cause attribution.
 
