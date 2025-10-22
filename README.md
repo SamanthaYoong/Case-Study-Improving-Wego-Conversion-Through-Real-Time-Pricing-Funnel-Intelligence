@@ -95,6 +95,8 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 **🧩 Finding:**  
 CTR declined **15%** across SEA, indicating trust or relevance issues post-search. Unpredicted **high demand spike** happening on Q3.
 
+---
+
 ### **C. Price Accuracy & Volatility Monitor**
 
 **Purpose:** Validate if price inconsistencies directly correlate with conversion drop among SEA users.
@@ -113,6 +115,8 @@ CTR declined **15%** across SEA, indicating trust or relevance issues post-searc
 
 **🧩 Finding:**  
 Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, confirming pricing latency as a conversion risk among SEA users.
+
+---
 
 ### **i. Pricing Inconsistencies Root Cause Deep Dive**
 
@@ -135,6 +139,8 @@ Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, 
 🧩 **Finding:**
 System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
 
+---
+
 ### **D. Search Relevance & Conversion Quality***
 **Purpose:** Rule out irrelevant search results as alternative cause.
 
@@ -155,51 +161,67 @@ System-level **FX cache staleness** and **latency bottlenecks** amplified price 
 **🧩 Finding:**  
 Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
 
-### **E. Root Cause Deep Dive**
-
-**Purpose:** Connect **business KPIs** with **system metrics** for root-cause attribution.
-
-**Layers of Analysis:**
-
-| Layer                 | Insight                                                                                 |
-| --------------------- | --------------------------------------------------------------------------------------- |
-| **FX System**         | FX Drift spiked 8–10% in Thailand due to outdated currency cache.                       |
-| **Cache / Latency**   | Data refresh delayed by 6–8 minutes; stale price rate rose 22%.                         |
-| **Provider Behavior** | Provider A’s reliability score dropped from 0.94 → 0.82, aligning with 17% CTR decline. |
-
-**Visualization:**
-
-* Multi-axis correlation plot (FX Drift %, Cache/Latency, CTR)
-* Drill-down: Provider → Route → Currency
-* Event annotations for cache and latency spikes
-
-🧩 **Finding:**
-System-level **FX cache staleness** and **latency bottlenecks** amplified price discrepancies, eroding user trust and click-through intent.
-
 ---
 
-## F.Implementation of ARIMA-Prophet Forecasting Model**
+## **E. Visualization Forecasting & Stakeholder Dashboards**
+
+Developed two interactive dashboards in **Tableau**, integrated with **time-series forecasting (ARIMA–Prophet sketch)** for proactive anomaly detection.
+
+### **1. Price Accuracy Monitor**
+- Real-time % of outdated prices by provider & route  
+- Alerts for latency spikes > 5 minutes, FX Drift > 2.5%
+- Dual-axis line: FX Drift (%) vs Volatility Index (%)
+- Control bands showing Prophet forecast intervals (expected drift range)
+
+Forecasting Sketch (Concept):
+
+- **Model Inputs**: Historical FX Drift %, Volatility Index, and Stale Price Rate (hourly granularity)
+- **Method**: ARIMA to capture short-term seasonality; Prophet for long-term trend + event sensitivity (e.g., cache refresh, provider outage).
+- **Output**: Forecasted baseline and confidence interval visualized in Tableau as shaded prediction bands.
+
+⭐ Stakeholder Value:
+Ops can visually spot “forecast breaks” (actual > upper bound), triggering investigation into latency or API mismatch events before conversion loss occurs.
+
+### **2. Funnel Conversion & Forecast Insights**
+
+**Purpose**: Forecast short-term conversion recovery and identify volatility-driven drops.
+
+### **1. Visuals**
+- Sankey Funnel: Search → Click → Detail → Booking
+- Overlay Prophet forecast for CTR & Conversion Rate (next 7 days)
+- Highlight anomalies where actual performance diverges from model forecast
+
+Forecasting Sketch (Concept):
+
+- **Model Inputs**: CTR, Conversion Rate, Price Accuracy Rate (daily granularity)
+- **Method**: Prophet model to account for seasonality and external regressors (e.g., provider latency, FX drift).
+- **Output**: Tableau line chart with shaded 95% forecast confidence region.
+
+⭐ Stakeholder Value:
+Product managers can anticipate when conversion may normalize after resolving latency issues, aiding prioritization of technical fixes.
+
 ---
 
 ## ✅ **5.Insights Summary**
 
 | Insight | Impact | Recommendation |
 |----------|---------|----------------|
-| Price updates lagging 3–6 mins for 4 key providers | 15% lower CTR | Prioritize API caching refresh or exclude outdated listings |
-?Provider| Mobile app users dropped off at redirect step | −10% funnel completion | Optimize redirect UX and speed |
-| High seasonality spikes not reflected in forecasts | Inaccurate demand predictions | Integrate ARIMA/Prophet models for seasonal adjustment |
+| Price updates lagging for 3 key providers ( **>10% FX drift** and **>20% stale rates**)
+ | 18% lower CTR | Prioritize API caching refresh or exclude outdated listings |
+| High seasonality spikes not reflected in forecasts | Inaccurate demand predictions | Integrate ARIMA/Prophet models for booking volume |
 
 ---
 
-?## ✅ **6. Outcome Simulation**
+## ✅ **6. Outcome Simulation**
 
-After implementing **provider reliability scoring** and **dynamic dashboard refresh**:
+After implementing **dynamic dashboard refresh** & **Forecasting Insights** :
 
-| Metric | Before | After | Improvement |
+| Metric | Before(Reactive Monitoring) | After(Predictive Intelligence with ARIMA-Prophet Sketch | Expected Impact |
 |--------|--------|--------|-------------|
-| **Price Accuracy Rate** | 82% | 96% | +17% |
-| **Conversion Rate** | 3.8% | 5.2% | +37% |
-| **Data Latency (Avg)** | 6 mins | 1.5 mins | −75% |
+| **Price Accuracy Monitor** | Manual detection of FX Drift spikes after 3–6 hr delay | ARIMA–Prophet hybrid predicts drift >2.5% deviation ahead of time | Early anomaly detection → Alert Ops 4–6 hr sooner |
+| **Stale Price Rate Tracking** | Static threshold alert when stale >15% | Forecasted stale rate trends with confidence intervals | Preventive cache refresh scheduling |
+| **Funnel Conversion Insights** | Reactive CTR | Prophet model projects 7-day conversion recovery trend post  | Forecasts conversion rebound post-fix 
+| **Decision Efficiency** | Post-issue reporting | Proactive prioritization of technical fixes  | +25% faster incident response time
 
 ---
 
@@ -219,7 +241,7 @@ After implementing **provider reliability scoring** and **dynamic dashboard refr
 ##  **8. Strategic Takeaway**
 
 This project illustrates how **data freshness** and **funnel transparency** directly influence **user trust and revenue** in travel platforms.  
-By maintaining **accurate real-time datasets** and delivering **data-driven dashboards**, analysts empower Wego to create the **seamless travel discovery experience** it promises — turning millions of searches into confident bookings.
+By maintaining **accurate real-time datasets** and delivering **data-driven dashboards with forecasting insights**, it enabled **Ops and Product teams** to detect pricing anomalies **before** user trust or conversion was impacted, ensuring faster response, higher reliability and sustained funnel stability.
 
 ---
 
