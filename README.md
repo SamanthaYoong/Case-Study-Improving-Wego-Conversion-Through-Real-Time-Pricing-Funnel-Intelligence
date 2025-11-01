@@ -173,13 +173,7 @@ Developed two interactive dashboards in **Tableau**, integrated with **time-seri
 - Dual-axis line: FX Drift (%) vs Volatility Index (%)
 - Control bands showing Prophet forecast intervals (expected drift range)
 
-Forecasting Sketch (Concept):
-
-- **Model Inputs**: Historical FX Drift %, Volatility Index, and Stale Price Rate (hourly granularity)
-- **Method**: ARIMA to capture short-term seasonality; Prophet for long-term trend + event sensitivity (e.g., cache refresh, provider outage).
-- **Output**: Forecasted baseline and confidence interval visualized in Tableau as shaded prediction bands.
-
-⭐ Stakeholder Value:
+?⭐ Stakeholder Value?:
 Ops can visually spot “forecast breaks” (actual > upper bound), triggering investigation into latency or API mismatch events before conversion loss occurs.
 
 ---
@@ -198,6 +192,12 @@ Forecasting Sketch (Concept):
 - **Model Inputs**: CTR, Conversion Rate, Price Accuracy Rate (daily granularity)
 - **Method**: Prophet model to account for seasonality and external regressors (e.g., provider latency, FX drift).
 - **Output**: Tableau line chart with shaded 95% forecast confidence region.
+- xxx
+- ?Forecasting Sketch (Concept)?:
+- **Model Inputs**: Historical FX Drift %, Volatility Index, and Stale Price Rate (hourly granularity)
+- **Method**: ARIMA to capture short-term seasonality; Prophet for long-term trend + event sensitivity (e.g., cache refresh, provider outage).
+- **Output**: Forecasted baseline and confidence interval visualized in Tableau as shaded prediction bands.
+
 
 ⭐ Stakeholder Value:
 Product managers can anticipate when conversion may normalize after resolving latency issues, aiding prioritization of technical fixes.
