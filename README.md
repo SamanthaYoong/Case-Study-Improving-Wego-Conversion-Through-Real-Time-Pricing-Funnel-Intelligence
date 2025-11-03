@@ -18,10 +18,7 @@ The project demonstrates how real-time data pipelines and actionable dashboards 
 
 Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed two major challenges:
 
-1. **Price Volatility & Data Lag**  
-   Flight and hotel prices often changed faster than dashboards updated, causing mismatches between displayed and actual booking costs.
-
-2. **Conversion Drop QoQ After Search**  
+**Conversion Drop QoQ After Search**  
    Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by ~8% QoQ.  
    Product managers suspected **pricing inconsistencies** and **irrelevant results** as main culprits.
 
@@ -163,11 +160,11 @@ Relevance scores remained stable across most routes, confirming **pricing accura
 
 ---
 
-## **E. Visualization Forecasting & Stakeholder Dashboards**
+## **5. Visualization Forecasting & Stakeholder Dashboards**
 
 Developed two interactive dashboards in **Tableau**, integrated with **time-series forecasting (ARIMA–Prophet sketch)** for proactive anomaly detection.
 
-### **1. Price Accuracy Monitor**
+### **A. Price Accuracy Monitor**
 - Real-time % of outdated prices by provider & route  
 - Alerts for latency spikes > 5 minutes, FX Drift > 2.5%
 - Dual-axis line: FX Drift (%) vs Volatility Index (%)
@@ -178,11 +175,11 @@ Ops can visually spot “forecast breaks” (actual > upper bound), triggering i
 
 ---
 
-### **2. Funnel Conversion & Forecast Insights**
+### **B. Funnel Conversion & Forecast Insights**
 
 **Purpose**: Forecast short-term conversion recovery and identify volatility-driven drops.
 
-### **1. Visuals**
+## **i. Visuals**
 - Sankey Funnel: Search → Click → Detail → Booking
 - Overlay Prophet forecast for CTR & Conversion Rate (next 7 days)
 - Highlight anomalies where actual performance diverges from model forecast
