@@ -19,8 +19,8 @@ The project demonstrates how real-time data pipelines and actionable dashboards 
 Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed two major challenges:
 
 **Conversion Drop QoQ After Search**  
-   Despite high search activity, the conversion rate from *search → click → booking redirect* was declining by ~8% QoQ.  
-   Product managers suspected **pricing inconsistencies** and **irrelevant results** as main culprits.
+   Despite high search activity, the conversion rate from *search → click → booking redirect* was declining during  Ramadan travel week.  
+   Product managers suspected **pricing inconsistencies** as main culprits.
 
 ---
 
@@ -86,11 +86,11 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 **Purpose:** Quantify *where* conversion drop occurs and who it affects most.
 
 - Constructed user funnel: **Search → Click → Detail → Booking**
-- Segmented by **region**, **route**, and **provider**
+- Segmented by **region**(SEA vs MENA), **route**, and **provider**
 - Measured conversion per stage and trend over time
 
 **🧩 Finding:**  
-CTR declined **15%** across SEA, indicating trust or relevance issues post-search. Unpredicted **high demand spike** happening on Q3.
+CTR declined **35%** across UAE searches, particularly from route Dubai to Cairo, indicating reduced user trust. (This study mainly focus on price accuracy & search relevance issues occuring post-query). 
 
 ---
 
