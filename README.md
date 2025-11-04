@@ -1,14 +1,14 @@
-#  Case Study: Improving Conversion Through Real-Time Tracking & Funnel Intelligence 
+#  Case Study: Improving Conversion Through Real-Time Dashboard Tracking & Funnel Intelligence 
 
-_Focus: Identifying root causes & to help with conversion rate dropping QoQ issues through real-time funnel data._
+_Focus: Diagnosing root causes and developing real-time funnel dashboards that track system, price and behaviorial metrics._
 
 ---
 
 ## 🗒️Overview
 
-This case study simulates a real-world project for **Wego**, a leading travel platform, focused on solving key business intelligence challenges in travel data:  
-- **Price volatility** and **data lag** from multiple providers  
-- **Conversion drop-offs** QoQ in the search-to-booking funnel  
+This case study simulates a real-world project for **Wego**, a leading travel platform, focused on solving key business intelligence challenges in travel data during peak seasons:  
+- **Price volatility** and **data lag** 
+- Potential loss of user trust suggested by **Conversion drop-offs** in the search-to-booking funnel  
 
 The project demonstrates how real-time data pipelines and actionable dashboards can help diagnosing root causes and improving conversion over time.
 
@@ -16,7 +16,7 @@ The project demonstrates how real-time data pipelines and actionable dashboards 
 
 ## 📍 1. Context & Problem Statement
 
-Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed two major challenges:
+Wego aggregates millions of flight and hotel options daily from multiple providers across regions. Internal analysis revealed a major challenge:
 
 **Conversion Drop QoQ After Search**  
    Despite high search activity, the conversion rate from *search → click → booking redirect* was declining during  Ramadan travel week.  
@@ -26,15 +26,17 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ## ✅ 2. Objective
 
-Identify whether the conversion drop after the *search stage* was primarily caused by:
+A. To diagnose whether the conversion drop after the *search stage* was primarily caused by:
 
-- Inaccurate or delayed pricing data  
+- Inaccurate or delayed pricing data
 - Poor search relevance or mismatched results
 
-To increase **conversion rate** by improving data freshness, funnel visiblity,and user trust through:
+This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
 
-- Real-time **price accuracy tracking**  
-- **Funnel performance visualization**
+B. To improve **conversion rate** by optimizing data freshness, funnel visiblity,and user trust through:
+
+- Real-time **funnel dashboard**  
+- **Funnel intelligence with Forecasting Insights**
 
 ---
 
