@@ -35,7 +35,6 @@ To increase **conversion rate** by improving data freshness, funnel visiblity,an
 
 - Real-time **price accuracy tracking**  
 - **Funnel performance visualization**
-- **Partner reliability scoring**
 
 ---
 
