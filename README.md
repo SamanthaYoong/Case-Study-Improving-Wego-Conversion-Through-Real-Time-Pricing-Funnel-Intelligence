@@ -1,4 +1,4 @@
-#  Case Study: Improving Conversion Through Real-Time Pricing & Funnel Intelligence 
+#  Case Study: Improving Conversion Through Real-Time Tracking & Funnel Intelligence 
 
 _Focus: Identifying root causes & to help with conversion rate dropping QoQ issues through real-time funnel data._
 
