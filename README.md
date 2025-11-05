@@ -1,6 +1,6 @@
-#  Case Study: Improving Conversion Through Diagnosing Root Causes and Real-Time Funnel Intelligence 
+#  Case Study: Improving Conversion Through Diagnosing Root Causes and Building Real-Time Funnel Intelligence 
 
-_Focus: Diagnosing root causes and developing real-time funnel dashboards that track system, price and behaviorial metrics._
+_Focus: Diagnosing root causes and building real-time funnel intelligence that track system, price and behaviorial metrics._
 
 ---
 
@@ -24,16 +24,6 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ---
 
-### **DAG Map Overview**
-
-[FX Drift ↑] ─┐
-               │
-[API Latency ↑] ──► [Price Staleness ↑] ──► [Price Inconsistency ↑] ──► [User Trust ↓] ──► [CTR ↓] ──► [Conversion ↓]
-               │
-[API Error ↑] ─┘
-
----
-
 ## ✅ 2. Objective
 
 To diagnose whether the conversion drop after the *search stage* was primarily caused by:
@@ -46,11 +36,13 @@ This stage focuses on validating hypotheses and _isolating key variables_ impact
 
 ## ✅ 2. Hypotheses
 
-To diagnose whether the conversion drop after the *search stage* was primarily caused by:
-
-📌 Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
-
-This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
+| ID | Hypothesis | Layer | Metric | Expected Outcome |
+|----|-------------|------|--------|------------------|
+| H1 | System latency spikes **latency (P95 > 5s)** cause **FX drift and stale pricing**. | System | p95 Latency, FX Drift %, Stale Price % | Positive correlation |
+| H2 | FX drift and stale prices increase price volatility.| Data | FX Drift %, Stale Price %, Price Volatility Index | Positive trend |
+| H3 | Higher price volatility reduces **Price accuracy**, which lowers **user trust, and therefore CTR** and ultimately **Click-to-Booking Conversion** | Behavioral | Price Volatility %, Price Accuracy %, CTR, Click-to-Booking Conversion%, Abandonment % | Negative trend |
+| H4 | Search relevance remains stable → pricing is the key driver.| Control | Relevance Score, CRI, CRR, Bounce % | Reach stable threshold |
+| H5 | Real-time dashboard tracking can optimize anamoly response efficiency and **improving conversion by 10%** during travel seasons. | Action + Outcome | Price Anamoly Response Efficiency Index (PAREI), Search-to-Book Conversion % | Positive trend |
 
 ---
 
