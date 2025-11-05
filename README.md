@@ -34,7 +34,7 @@ This stage focuses on validating hypotheses and _isolating key variables_ impact
 
 ---
 
-## 2. Hypotheses
+✍ ## 2. Hypotheses
 
 | ID | Hypothesis | Layer | Metric | Expected Outcome |
 |----|-------------|------|--------|------------------|
