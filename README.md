@@ -24,11 +24,44 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ---
 
+**DAG Map Overview**
+
+(External FX Drift)
+          │
+          ▼
+  [FX Drift %] 
+          │
+          ▼
+  [Price Cache Delay] ◄── [API Latency ↑]
+          │
+          ▼
+  [Stale Price %] ──► [Price Inconsistency %]
+          │
+          ▼
+  [User Trust Index ↓]
+          │
+          ▼
+  [CTR ↓] ──► [Conversion ↓]
+
+   
+
+---
+
 ## ✅ 2. Objective
 
 To diagnose whether the conversion drop after the *search stage* was primarily caused by:
 
-A. Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
+📌 Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
+
+This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
+
+---
+
+## ✅ 2. Hypotheses
+
+To diagnose whether the conversion drop after the *search stage* was primarily caused by:
+
+📌 Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
 
 This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
 
