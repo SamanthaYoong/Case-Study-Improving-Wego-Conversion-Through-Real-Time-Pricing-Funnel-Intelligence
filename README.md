@@ -10,7 +10,7 @@ This case study simulates a real-world project for **Wego**, a leading travel pl
 - **Price volatility** and **data lag** 
 - Potential loss of user trust suggested by **Conversion drop-offs** in the search-to-booking funnel  
 
-The project demonstrates **how diagnosing root causes** and **building real-time data pipelines** with **actionable dashboards** can **improve conversion performance over time**.
+The project demonstrates **how diagnosing root causes** and **building real-time data pipelines** can **improve conversion performance over time**.
 
 ---
 
