@@ -28,7 +28,7 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 To diagnose whether the conversion drop after the *search stage* was primarily caused by:
 
-- Inaccurate or delayed pricing data OR/AND Poor search relevance or mismatched results
+A. Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
 
 This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
 
