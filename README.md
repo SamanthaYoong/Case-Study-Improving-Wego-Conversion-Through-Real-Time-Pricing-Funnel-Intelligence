@@ -24,26 +24,13 @@ Wego aggregates millions of flight and hotel options daily from multiple provide
 
 ---
 
-**DAG Map Overview**
+### **DAG Map Overview**
 
-(External FX Drift)
-          │
-          ▼
-  [FX Drift %] 
-          │
-          ▼
-  [Price Cache Delay] ◄── [API Latency ↑]
-          │
-          ▼
-  [Stale Price %] ──► [Price Inconsistency %]
-          │
-          ▼
-  [User Trust Index ↓]
-          │
-          ▼
-  [CTR ↓] ──► [Conversion ↓]
-
-   
+[FX Drift ↑] ─┐
+               │
+[API Latency ↑] ──► [Price Staleness ↑] ──► [Price Inconsistency ↑] ──► [User Trust ↓] ──► [CTR ↓] ──► [Conversion ↓]
+               │
+[API Error ↑] ─┘
 
 ---
 
