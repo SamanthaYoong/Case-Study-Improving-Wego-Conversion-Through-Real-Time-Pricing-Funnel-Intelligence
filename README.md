@@ -41,7 +41,7 @@ This stage focuses on validating hypotheses and _isolating key variables_ impact
 | H1 | System latency spikes **latency (P95 > 5s)** cause **FX drift and stale pricing**. | System | p95 Latency, FX Drift %, Stale Price % | Positive correlation |
 | H2 | FX drift and stale prices increase **price volatility**.| Data | FX Drift %, Stale Price %, Price Volatility Index | Positive trend |
 | H3 | Higher price volatility reduces **Price accuracy**, which lowers **user trust, and therefore CTR** and **Search-to-Click Conversion** | Behavioral | Price Volatility %, Price Accuracy %, CTR, Search-to-Click Conversion %, Abandonment % | Negative trend |
-| H4 | Search relevance remains stable → **pricing is the key driver**.| Control | Relevance Score, CRI, CRR, Bounce % | Reach stable threshold |
+| H4 | Search relevance remains stable → **pricing is the key driver**.| Control | Relevance Score, CRI, CRR, Bounce % | Stable threshold |
 | H5 | Real-time dashboard tracking can **optimize anamoly response efficiency** and **improving conversion by 10%** during travel seasons. | Action + Outcome | Price Anamoly Response Efficiency Index (PAREI), Search-to-Book Conversion % | Positive trend |
 
 ---
