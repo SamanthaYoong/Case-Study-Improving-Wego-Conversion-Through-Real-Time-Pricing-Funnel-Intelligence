@@ -151,7 +151,7 @@ System-level **FX cache staleness** and **latency bottlenecks** amplified price 
 | Metric | Formula |  
 |--------|----------|
 | **Relevance Score (RS)** | `clicked results / total results shown * normalized CTR` | 
-| **Click Relevance Index (CRI)** | `average rank of clicked results/total results` | 
+| **Click Relevance Index (CRI)** | `Σ(wᵢ × CTRᵢ) / Σ(wᵢ)` | 
 | **Conversion Relevance Rate(CRR)** | `conversions from top 5 results/total conversions` | 
 | **Relevance Weighted Conversion Rate (RWCR)** | `∑(conversion Rate x relevance score)` | 
 | **Bounce Rate** | `searches with no click/total searches` | 
