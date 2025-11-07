@@ -166,7 +166,13 @@ System-level **FX cache staleness** and **latency bottlenecks** amplified price 
 Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
 
 ---
+## **4. Forecasts**
 
+
+
+
+
+---
 ## **5. Visualization Forecasting & Stakeholder Dashboards**
 
 Developed two interactive dashboards in **Tableau**, integrated with **time-series forecasting (ARIMA–Prophet sketch)** for proactive anomaly detection.
