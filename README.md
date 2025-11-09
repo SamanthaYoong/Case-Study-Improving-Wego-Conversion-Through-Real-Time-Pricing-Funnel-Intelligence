@@ -30,7 +30,7 @@ To diagnose whether the conversion drop after the *search stage* was primarily c
 
 📌 Inaccurate or delayed pricing data or/and poor search relevance or mismatched results
 
-This stage focuses on validating hypotheses and _isolating key variables_ impacting conversion rate.
+This stage focuses on validating hypotheses and _isolating key variables (poor search relevance)_ impacting conversion rate.
 
 ---
 
