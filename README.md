@@ -44,6 +44,7 @@ This stage focuses on validating hypotheses and _isolating key variables (poor s
 | H4 | Search relevance remains stable → **pricing is the key driver**.| Control | Relevance Score, CRI, CRR, Bounce % | Stable |
 | H5 | Real-time dashboard tracking can **optimize anamoly response efficiency** and **improving conversion by 10%** during travel seasons. | Action + Outcome | Price Anamoly Response Efficiency Index (PAREI), Search-to-Book Conversion % | Positive trend |
 
+---
 
 ### Flowchart (Hypotheses)
 
