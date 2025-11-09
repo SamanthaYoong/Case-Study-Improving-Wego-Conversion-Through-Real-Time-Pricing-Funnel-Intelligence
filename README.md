@@ -45,51 +45,17 @@ This stage focuses on validating hypotheses and _isolating key variables (poor s
 | H5 | Real-time dashboard tracking can **optimize anamoly response efficiency** and **improving conversion by 10%** during travel seasons. | Action + Outcome | Price Anamoly Response Efficiency Index (PAREI), Search-to-Book Conversion % | Positive trend |
 
 
-# Hypothesis Flowchart — Wego Pricing & Conversion
+## Flowchart — Wego Pricing & Conversion
 
 ```mermaid
-flowchart TD
-  style A fill:#f8f9fa,stroke:#333,stroke-width:1px
-  style B fill:#fff7e6,stroke:#333,stroke-width:1px
-  style C fill:#fff0f0,stroke:#333,stroke-width:1px
-  style D fill:#e6f7ff,stroke:#333,stroke-width:1px
-  style E fill:#e8ffe6,stroke:#333,stroke-width:1px
-  style F fill:#f0f0f0,stroke:#333,stroke-width:1px
-
-  A[System Latency Spike<br/>(p95 &gt; 5s)]
-  B[FX Drift % ↑<br/>Stale Price % ↑]
-  C[Price Volatility ↑<br/>(PVI = σ/μ ×100)]
-  D[Price Accuracy ↓ → User Trust ↓<br/>CTR ↓ & Search-to-Book ↓]
-  S[Search Relevance Stable<br/>(control)]
-  E[Real-time Dashboard & Alerts<br/>(Anomaly detection + Response)]
-  F[Outcome: Conversion ↑ (≈ +10% during seasons) / Faster SLA Resolution]
-
-  A -->|H1: p95 &gt; 5s leads to| B
+  A -->|H1: p95 latency 5s leads to| B
   B -->|H2: FX drift + stale →| C
   C -->|H3: Volatility →| D
-  S -.->|H4: If stable →| D
-  E -->|H5: tracking → improves| F
-  E -->|H5: tracking → optimizes response →| D
+  S -->|H4: If stable →| D
+  D -->|H3: lower user trust, CTR, Search-to-Book Conversion →| E
+  E -->|H5: tracking → improves conversion 10% 
+  E -->|H5: tracking → optimizes anamoly response efficiency 
 
-  %% Add metric annotations (small nodes)
-  subgraph METRICS [ ]
-    m1[(p95 latency ms)]
-    m2[(FX Drift %)]
-    m3[(Stale Price %)]
-    m4[(Price Volatility Index)]
-    m5[(Price Accuracy %)]
-    m6[(CTR %, Search→Book %)]
-    m7[(Anomaly Response Efficiency - PAREI)]
-  end
-
-  A --- m1
-  B --- m2
-  B --- m3
-  C --- m4
-  D --- m5
-  D --- m6
-  E --- m7
-  F --- m6
 ```
 ---
 
