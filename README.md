@@ -107,7 +107,7 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 - Measured conversion per stage and trend over time
 
 **🧩 Finding:**  
-CTR declined **35%** across UAE searches, particularly from route Dubai to Cairo, indicating reduced user trust. (This study mainly focus on price accuracy & search relevance issues occuring post-query). 
+CTR declined **35%** across UAE searches, particularly from route Dubai to Cairo, indicating reduced user trust. 
 
 ---
 
