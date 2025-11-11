@@ -103,7 +103,7 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 **Purpose:** Quantify *where* conversion drop occurs and who it affects most.
 
 - Constructed user funnel: **Search → Click → Detail → Booking**
-- Segmented by **region**(SEA vs MENA), **route**, and **provider**
+- Segmented by **region**(MENA), **route**, and **provider**
 - Measured conversion per stage and trend over time
 
 **🧩 Finding:**  
