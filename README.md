@@ -103,11 +103,11 @@ SELECT * FROM flight_api_log WHERE rn = 1;
 **Purpose:** Quantify *where* conversion drop occurs and who it affects most.
 
 - Constructed user funnel: **Search → Click → Detail → Booking**
-- Segmented by **region**(MENA), **route**, and **provider**
+- Segmented by **route in MENA region**.
 - Measured conversion per stage and trend over time
 
 **🧩 Finding:**  
-CTR declined **35%** across UAE searches, particularly from route Dubai to Cairo, indicating reduced user trust. 
+CTR declined **35%** across UAE searches, particularly from route Dubai to Cairo in 1st and 2nd week of the ramadan month, indicating reduced user trust. 
 
 ---
 
