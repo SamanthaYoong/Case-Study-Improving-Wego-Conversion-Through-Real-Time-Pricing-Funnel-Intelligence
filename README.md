@@ -132,6 +132,29 @@ Providers with **>10% FX drift** and **>20% stale rates** saw **CTR drop 18%**, 
 
 ---
 
+### **D. Search Relevance & Conversion Quality***
+**Purpose:** Rule out irrelevant search results as alternative cause.
+
+| Metric | Formula |  
+|--------|----------|
+| **Relevance Score (RS)** | `clicked results / total results shown * normalized CTR` | 
+| **Click Relevance Index (CRI)** | `Σ(wᵢ × CTRᵢ) / Σ(wᵢ)` | 
+| **Conversion Relevance Rate(CRR)** | `conversions from top 5 results/total conversions` | 
+| **Relevance Weighted Conversion Rate (RWCR)** | `∑(conversion Rate x relevance score)` | 
+| **Bounce Rate** | `searches with no click/total searches` | 
+
+
+**Visualization Ideas:**
+- Conversion tree (**Search → Click → Detail → Booking**)  
+- Region & route filters  
+- Tooltip with price deviation and provider reliability
+
+**🧩 Finding:**  
+Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
+
+---
+---
+
 ### **i. Pricing Inconsistencies Root Cause Deep Dive**
 
 **Purpose:** Connect **business KPIs** with **system metrics** for root-cause attribution.
@@ -155,32 +178,9 @@ System-level **FX cache staleness** and **latency bottlenecks** amplified price 
 
 ---
 
-### **D. Search Relevance & Conversion Quality***
-**Purpose:** Rule out irrelevant search results as alternative cause.
-
-| Metric | Formula |  
-|--------|----------|
-| **Relevance Score (RS)** | `clicked results / total results shown * normalized CTR` | 
-| **Click Relevance Index (CRI)** | `Σ(wᵢ × CTRᵢ) / Σ(wᵢ)` | 
-| **Conversion Relevance Rate(CRR)** | `conversions from top 5 results/total conversions` | 
-| **Relevance Weighted Conversion Rate (RWCR)** | `∑(conversion Rate x relevance score)` | 
-| **Bounce Rate** | `searches with no click/total searches` | 
-
-
-**Visualization Ideas:**
-- Conversion tree (**Search → Click → Detail → Booking**)  
-- Region & route filters  
-- Tooltip with price deviation and provider reliability
-
-**🧩 Finding:**  
-Relevance scores remained stable across most routes, confirming **pricing accuracy**, not content mismatch, as the main driver of the drop.
-
----
 ## **4. Forecasts**
 
 ????
-
-
 
 ---
 ## **5. Visualization Forecasting & Stakeholder Dashboards**
