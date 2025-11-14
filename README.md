@@ -1,4 +1,4 @@
-#  Case Study: Improving Conversion Through Diagnosing Root Causes and Building Real-Time Funnel Intelligence 
+#  Case Study: Improving Conversion Through Real-Time Funnel Intelligence 
 
 _Focus: Diagnosing root causes and building real-time funnel intelligence that track system, price and behaviorial metrics._
 
