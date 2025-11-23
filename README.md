@@ -1,4 +1,4 @@
-Case Study: Root-Cause Analysis of CTR Decline: Detecting FX Drift & Pricing Inconsistencies in Wego
+### Case Study: Root-Cause Analysis of CTR Decline: Detecting FX Drift & Pricing Inconsistencies in Wego
 
 _Focus on uncovering the drivers of CTR Drop, a real-time pricing diagnostics for Wego_
 
