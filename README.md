@@ -1,6 +1,6 @@
-#  Case Study: Improving Conversion Through Real-Time Funnel Intelligence 
+Case Study: Root-Cause Analysis of CTR Decline: Detecting FX Drift & Pricing Inconsistencies in Wego
 
-_Focus: Diagnosing root causes and building real-time funnel intelligence that track system, price and behaviorial metrics._
+_Focus on uncovering the drivers of CTR Drop, a real-time pricing diagnostics for Wego_
 
 ---
 
